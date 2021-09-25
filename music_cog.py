@@ -201,7 +201,7 @@ class music_cog(commands.Cog):
         await ctx.send("Kardiya Bapuji...")
 
     @commands.command(name="ban", help="Respect")
-    async def porn(self, ctx, *args):
+    async def ban(self, ctx, *args):
         query = " ".join(args)
         voice_channel = ctx.author.voice.channel
         if voice_channel is None:
