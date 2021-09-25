@@ -3,6 +3,7 @@ from discord.ext import commands
 
 from youtube_dl import YoutubeDL
 
+from porn_desi import search
 from porn_parts import get_porn
 
 
@@ -107,12 +108,6 @@ class music_cog(commands.Cog):
             # try to play next in the queue if it exists
             await self.play_music()
 
-    @commands.command(name="cc", help="Respect")
-    async def help(self, ctx):
-        if self.vc:
-            self.vc.stop()
-        await ctx.send("Kardiya Bapuji...")
-
     @commands.command(name="link", help="Respect")
     async def porn(self, ctx, *args):
         query = " ".join(args)
@@ -166,3 +161,37 @@ class music_cog(commands.Cog):
     @commands.command(name="NoU", help="Respect")
     async def nou(self, ctx):
         await ctx.send("NoU")
+
+    @commands.command(name="p", help="Plays a selected song from youtube")
+    async def pl(self, ctx, *args):
+        query = " ".join(args)
+        voice_channel = ctx.author.voice.channel
+        if voice_channel is None:
+            await ctx.send("Connect to a voice channel!")
+        else:
+            song = self.search_yt(query)
+            if type(song) == type(True):
+                await ctx.send(
+                    "Could not download the song. Incorrect format try another keyword. This could be due to playlist or a livestream format.")
+            else:
+                await ctx.send("Song added to the queue")
+                self.music_queue.append([song, voice_channel])
+
+                if self.is_playing == False:
+                    await self.play_music()
+
+    @commands.command(name="boobita", help="Respect")
+    async def porn(self, ctx, *args):
+        query = " ".join(args)
+        voice_channel = ctx.author.voice.channel
+        if voice_channel is None:
+            await ctx.send("Connect to a voice channel!")
+        else:
+            porn = search(query)[0]['urls']
+            await ctx.send(f"Maza Aah Gaya {porn}")
+
+    @commands.command(name="cc", help="Respect")
+    async def cc_stop(self, ctx):
+        if self.vc:
+            self.vc.stop()
+        await ctx.send("Kardiya Bapuji...")
