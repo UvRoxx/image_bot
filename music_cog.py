@@ -39,7 +39,8 @@ class music_cog(commands.Cog):
             # remove the first element as you are currently playing it
             self.music_queue.pop(0)
 
-            self.vc.play(discord.FFmpegOpusAudio.from_probe(m_url, **self.FFMPEG_OPTIONS), after=lambda e: self.play_next())
+            self.vc.play(discord.FFmpegOpusAudio.from_probe(m_url, **self.FFMPEG_OPTIONS),
+                         after=lambda e: self.play_next())
         else:
             self.is_playing = False
 
@@ -103,3 +104,9 @@ class music_cog(commands.Cog):
             self.vc.stop()
             # try to play next in the queue if it exists
             await self.play_music()
+
+    @commands.command(name="stop", help="Respect")
+    async def help(self, ctx):
+        if self.vc:
+            self.vc.stop()
+        await ctx.send("Kardiya Bapuji...")

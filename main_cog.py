@@ -51,4 +51,7 @@ In case Im Sleeping...
 
     @commands.command(name="jetha", help="Respect")
     async def help(self, ctx):
-        await ctx.send("Ji Bapuji...")
+        await ctx.send("Chup Chutiye...")
+
+
+
