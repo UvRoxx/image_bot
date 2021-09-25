@@ -113,7 +113,7 @@ class music_cog(commands.Cog):
             self.vc.stop()
         await ctx.send("Kardiya Bapuji...")
 
-    @commands.command(name="naughty", help="Respect")
+    @commands.command(name="link", help="Respect")
     async def porn(self, ctx, *args):
         query = " ".join(args)
         voice_channel = ctx.author.voice.channel
@@ -123,3 +123,15 @@ class music_cog(commands.Cog):
         else:
             porn = get_porn(query=query, content='video')
             await ctx.send(f"Bhai Yeh Dekh {porn}")
+
+    @commands.command(name="naughty", help="Respect")
+    async def pic_porn(self, ctx, *args):
+        query = " ".join(args)
+        voice_channel = ctx.author.voice.channel
+        if voice_channel is None:
+            # you need to be connected so that the bot knows where to go
+            await ctx.send("Connect to a voice channel!")
+        else:
+            porn = get_porn(query=query, content='video')
+            await ctx.send(f"Gazab Maal Hai{porn}")
+
