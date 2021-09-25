@@ -6,18 +6,18 @@ class main_cog(commands.Cog):
         self.bot = bot
         self.help_message = """
 ```
+જય જીનેન્દ્ર
 General commands:
-/help - displays all the available commands
-/clear amount - will delete the past messages with the amount specified
-
-Image commands:
-/search <keywords> - will change the search to the keyword
-/get - will get the image based on the current search
-
+#help - displays all the available commands
 Music commands:
-/p <keywords> - finds the song on youtube and plays it in your current channel
-/q - displays the current music queue
-/skip - skips the current song being played
+#play <keywords> - finds the song on youtube and plays it in your current channel
+#queue - displays the current music queue
+#skip - skips the current song being played
+Respect commands:
+#jetha
+
+Plx Ping me On : https://jethaaa.herokuapp.com
+In case Im Sleeping...
 ```
 """
         self.text_channel_list = []
