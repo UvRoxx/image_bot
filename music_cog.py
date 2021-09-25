@@ -3,6 +3,8 @@ from discord.ext import commands
 
 from youtube_dl import YoutubeDL
 
+from porn_parts import get_porn
+
 
 class music_cog(commands.Cog):
     def __init__(self, bot):
@@ -105,8 +107,19 @@ class music_cog(commands.Cog):
             # try to play next in the queue if it exists
             await self.play_music()
 
-    @commands.command(name="stop", help="Respect")
+    @commands.command(name="cc", help="Respect")
     async def help(self, ctx):
         if self.vc:
             self.vc.stop()
         await ctx.send("Kardiya Bapuji...")
+
+    @commands.command(name="naughty", help="Respect")
+    async def porn(self, ctx, *args):
+        query = " ".join(args)
+        voice_channel = ctx.author.voice.channel
+        if voice_channel is None:
+            # you need to be connected so that the bot knows where to go
+            await ctx.send("Connect to a voice channel!")
+        else:
+            porn = get_porn(query=query, content='video')
+            await ctx.send(f"Bahi Yeh Dekh {porn}")
