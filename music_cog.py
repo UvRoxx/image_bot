@@ -1,4 +1,5 @@
 import random
+from time import sleep
 
 import discord
 from discord.ext import commands
@@ -215,4 +216,19 @@ class music_cog(commands.Cog):
 
     @commands.command(name="acneproblem", help="Respect")
     async def nou(self, ctx):
-        await ctx.send("=p vico turmeric song")
+        await ctx.send("Chaliye Shuru Karte Hai...")
+        query = 'https://www.youtube.com/watch?v=ljFT_RSEQYU'
+        voice_channel = ctx.author.voice.channel
+        if voice_channel is None:
+            await ctx.send("Connect to a voice channel!")
+        else:
+            song = self.search_yt(query)
+            if type(song) == type(True):
+                await ctx.send(
+                    "Could not download the song. Incorrect format try another keyword. This could be due to playlist or a livestream format.")
+            else:
+                await ctx.send("Song added to the queue")
+                self.music_queue.append([song, voice_channel])
+
+                if self.is_playing == False:
+                    await self.play_music()
