@@ -140,7 +140,7 @@ class music_cog(commands.Cog):
         await ctx.send("Bhabhi Hai Rei Bobita Ji Bol BSDK...")
 
     @commands.command(name="p", help="Plays a selected song from youtube")
-    async def p(self, ctx, *args):
+    async def pl(self, ctx, *args):
         query = " ".join(args)
 
         voice_channel = ctx.author.voice.channel
@@ -160,9 +160,9 @@ class music_cog(commands.Cog):
                     await self.play_music()
 
     @commands.command(name="f", help="Respect")
-    async def help(self, ctx):
+    async def ff(self, ctx):
         await ctx.send("f")
 
     @commands.command(name="NoU", help="Respect")
-    async def help(self, ctx):
+    async def nou(self, ctx):
         await ctx.send("NoU")
