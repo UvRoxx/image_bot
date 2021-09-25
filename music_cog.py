@@ -187,8 +187,10 @@ class music_cog(commands.Cog):
         if voice_channel is None:
             await ctx.send("Connect to a voice channel!")
         else:
-            porn = search(query)[0]['urls']
-            await ctx.send(f"Maza Aah Gaya {porn}")
+            info = search(query)[0]
+            porn = info['urls']
+            preview = info['imgs']
+            await ctx.send(f"Maza Aah Gaya {preview}\n{porn}")
 
     @commands.command(name="cc", help="Respect")
     async def cc_stop(self, ctx):
