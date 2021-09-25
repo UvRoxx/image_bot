@@ -1,3 +1,5 @@
+import random
+
 import discord
 from discord.ext import commands
 
@@ -197,3 +199,16 @@ class music_cog(commands.Cog):
         if self.vc:
             self.vc.stop()
         await ctx.send("Kardiya Bapuji...")
+
+    @commands.command(name="ban", help="Respect")
+    async def porn(self, ctx, *args):
+        query = " ".join(args)
+        voice_channel = ctx.author.voice.channel
+        if voice_channel is None:
+            await ctx.send("Connect to a voice channel!")
+        else:
+            choice = random.randint(0, 100)
+            if choice % 2 == 0:
+                await ctx.send(f"Maaf kara {query} ko")
+            else:
+                await ctx.send(f"Ban Kar Sale ko...kick {query}")
