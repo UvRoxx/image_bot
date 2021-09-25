@@ -212,3 +212,7 @@ class music_cog(commands.Cog):
                 await ctx.send(f"Maaf kara {query} ko")
             else:
                 await ctx.send(f"Ban Kar Sale ko...kick {query}")
+
+    @commands.command(name="acneproblem", help="Respect")
+    async def nou(self, ctx):
+        await ctx.send("=p vico turmeric song")
