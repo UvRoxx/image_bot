@@ -43,3 +43,5 @@ urllib3==1.26.2
 Werkzeug==1.0.1
 yarl==1.6.3
 youtube-dl==2021.3.14
+git+https://github.com/Rapptz/discord.py
+ffmpeg
