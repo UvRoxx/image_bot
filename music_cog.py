@@ -135,3 +135,34 @@ class music_cog(commands.Cog):
             porn = get_porn(query=query, content='video')
             await ctx.send(f"Gazab Maal Hai{porn}")
 
+    @commands.command(name="bobita", help="Respect")
+    async def help(self, ctx):
+        await ctx.send("Bhabhi Hai Rei Bobita Ji Bol BSDK...")
+
+    @commands.command(name="p", help="Plays a selected song from youtube")
+    async def p(self, ctx, *args):
+        query = " ".join(args)
+
+        voice_channel = ctx.author.voice.channel
+        if voice_channel is None:
+            # you need to be connected so that the bot knows where to go
+            await ctx.send("Connect to a voice channel!")
+        else:
+            song = self.search_yt(query)
+            if type(song) == type(True):
+                await ctx.send(
+                    "Could not download the song. Incorrect format try another keyword. This could be due to playlist or a livestream format.")
+            else:
+                await ctx.send("Song added to the queue")
+                self.music_queue.append([song, voice_channel])
+
+                if self.is_playing == False:
+                    await self.play_music()
+
+    @commands.command(name="f", help="Respect")
+    async def help(self, ctx):
+        await ctx.send("f")
+
+    @commands.command(name="NoU", help="Respect")
+    async def help(self, ctx):
+        await ctx.send("NoU")
