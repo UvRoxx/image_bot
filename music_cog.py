@@ -122,4 +122,4 @@ class music_cog(commands.Cog):
             await ctx.send("Connect to a voice channel!")
         else:
             porn = get_porn(query=query, content='video')
-            await ctx.send(f"Bahi Yeh Dekh {porn}")
+            await ctx.send(f"Bhai Yeh Dekh {porn}")
