@@ -242,7 +242,7 @@ class music_cog(commands.Cog):
         voice_channel = ctx.author.voice.channel
         songs = []
         for song in artist.songs:
-            songs.append(song)
+            songs.append(song.title)
         if voice_channel is None:
             await ctx.send("Connect to a voice channel!")
         else:
