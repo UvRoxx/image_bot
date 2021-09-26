@@ -200,6 +200,7 @@ class music_cog(commands.Cog):
     async def cc_stop(self, ctx):
         if self.vc:
             self.vc.stop()
+        self.music_queue = []
         await ctx.send("Kardiya Bapuji...")
 
     @commands.command(name="ban", help="Respect")
