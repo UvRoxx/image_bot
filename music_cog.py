@@ -281,7 +281,7 @@ class music_cog(commands.Cog):
     async def recp(self, ctx, *args):
         query = " ".join(args)
         genius = lyricsgenius.Genius(os.getenv("GENIUS"))
-        artist = genius.search_artist(query, max_songs=5)
+        artist = genius.search_artist(query, max_songs=10)
         voice_channel = ctx.author.voice.channel
         songs = []
         for song in artist.songs:
@@ -296,7 +296,8 @@ class music_cog(commands.Cog):
                     await ctx.send(
                         "Could not download the song. Incorrect format try another keyword. This could be due to playlist or a livestream format.")
                 else:
-                    await ctx.send("Song added to the queue")
+                    await ctx.send(f"{s} added to the queue")
+
                     self.music_queue.append([song, voice_channel])
                     if self.is_playing == False:
                         await self.play_music()
