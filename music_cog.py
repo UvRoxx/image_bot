@@ -15,7 +15,6 @@ from youtubemusic import YouTubeMusic
 class music_cog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-        self.youtubeMusic = YouTubeMusic()
         # all the music related stuff
         self.is_playing = False
 
@@ -114,7 +113,7 @@ class music_cog(commands.Cog):
             await self.play_music()
 
     @commands.command(name="link", help="Respect")
-    async def porn(self, ctx, *args):
+    async def link(self, ctx, *args):
         query = " ".join(args)
         voice_channel = ctx.author.voice.channel
         if voice_channel is None:
@@ -257,7 +256,14 @@ class music_cog(commands.Cog):
         song_name, artist_name = query.split('by')
         artist = genius.search_artist(artist_name, max_songs=0)
         song = genius.search_song(song_name, artist.name)
-        await ctx.send(f"{song.lyrics}")
+        song = f"{song.lyrics}"
+        if len(song) > 1800:
+            p1 = song[:1800]
+            p2 = song[1800:]
+            await ctx.send(p1)
+            await ctx.send(p2)
+        else:
+            await ctx.send(f"{song.lyrics}")
 
     @commands.command(name="meme", help="Meme")
     async def meme(self, ctx):
