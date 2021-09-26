@@ -5,9 +5,9 @@ from time import sleep
 import discord
 from discord.ext import commands
 import lyricsgenius
-
+import requests
 from youtube_dl import YoutubeDL
-
+import json
 from porn_desi import search
 from porn_parts import get_porn
 
@@ -249,3 +249,10 @@ class music_cog(commands.Cog):
         else:
             for song in songs:
                 await ctx.send(f"{song}")
+
+    @commands.command(name="meme", help="Meme")
+    async def meme(self, ctx):
+        content = requests.get("https://meme-api.herokuapp.com/gimme").text
+        data = json.loads(content, )
+        meme = discord.Embed(title=f"{data['title']}", Color=discord.Color.random()).set_image(url=f"{data['url']}")
+        await ctx.reply(embed=meme)
