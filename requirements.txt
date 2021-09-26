@@ -52,3 +52,5 @@ git+https://github.com/nficano/pytube@master
 git+https://github.com/alexmercerind/youtube-search-python
 aiofiles
 httpx
+ytmusicapi==0.19.3
+youtube-search-python==1.4.8
