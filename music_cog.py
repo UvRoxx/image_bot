@@ -1,8 +1,10 @@
+import os
 import random
 from time import sleep
 
 import discord
 from discord.ext import commands
+import lyricsgenius
 
 from youtube_dl import YoutubeDL
 
@@ -232,3 +234,14 @@ class music_cog(commands.Cog):
 
                 if self.is_playing == False:
                     await self.play_music()
+
+    @commands.command(name="artist", help="Respect")
+    async def artist(self, ctx, *args):
+        query = " ".join(args)
+        genius = lyricsgenius.Genius(os.getenv("GENIUS"))
+        artist = genius.search_artist(query, max_songs=5, sort="title")
+        voice_channel = ctx.author.voice.channel
+        if voice_channel is None:
+            await ctx.send("Connect to a voice channel!")
+        else:
+            await ctx.send(f"{artist.songs}")

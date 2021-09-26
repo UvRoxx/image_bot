@@ -46,3 +46,4 @@ youtube_dl==2021.6.6
 git+https://github.com/Rapptz/discord.py
 ffmpeg
 bs4
+lyricsgenius==3.0.1
