@@ -276,3 +276,26 @@ class music_cog(commands.Cog):
     async def yomama(self, ctx):
         content = requests.get("https://api.yomomma.info").json()['joke']
         await ctx.send(content)
+
+    @commands.command(name="recp", help="Recommends and Plays Songs From Artist")
+    async def recp(self, ctx, *args):
+        query = " ".join(args)
+        genius = lyricsgenius.Genius(os.getenv("GENIUS"))
+        artist = genius.search_artist(query, max_songs=5)
+        voice_channel = ctx.author.voice.channel
+        songs = []
+        for song in artist.songs:
+            songs.append(song.title)
+        voice_channel = ctx.author.voice.channel
+        if voice_channel is None:
+            await ctx.send("Connect to a voice channel!")
+        else:
+            for s in songs:
+                song = self.search_yt(s)
+                if type(song) == type(True):
+                    await ctx.send(
+                        "Could not download the song. Incorrect format try another keyword. This could be due to playlist or a livestream format.")
+                else:
+                    await ctx.send("Song added to the queue")
+                    self.music_queue.append([song, voice_channel])
+                    await self.play_music()
