@@ -241,7 +241,11 @@ class music_cog(commands.Cog):
         genius = lyricsgenius.Genius(os.getenv("GENIUS"))
         artist = genius.search_artist(query, max_songs=5, sort="title")
         voice_channel = ctx.author.voice.channel
+        songs = []
+        for song in artist.songs:
+            songs.append(song)
         if voice_channel is None:
             await ctx.send("Connect to a voice channel!")
         else:
-            await ctx.send(f"{artist.songs}")
+            for song in songs:
+                await ctx.send(f"{song}")
