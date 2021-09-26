@@ -239,7 +239,7 @@ class music_cog(commands.Cog):
     async def rec(self, ctx, *args):
         query = " ".join(args)
         genius = lyricsgenius.Genius(os.getenv("GENIUS"))
-        artist = genius.search_artist(query, max_songs=5, sort="title")
+        artist = genius.search_artist(query, max_songs=5)
         voice_channel = ctx.author.voice.channel
         songs = []
         for song in artist.songs:
