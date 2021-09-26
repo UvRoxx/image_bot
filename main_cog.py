@@ -24,7 +24,7 @@ Meme commands:
 Lyrics And Recommendation
 .rec <artist_name> Recommendation
 .ly <song_name> by <artist_name> Lyrics
-.recp <artist_name> Auto Play 10 Songs from Popular songs by Artist
+.recp <artist_name> Auto Play 5 Songs from Popular songs by Artist
 
 ```
 """

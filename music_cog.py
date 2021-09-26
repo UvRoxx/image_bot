@@ -280,8 +280,9 @@ class music_cog(commands.Cog):
     @commands.command(name="recp", help="Recommends and Plays Songs From Artist")
     async def recp(self, ctx, *args):
         query = " ".join(args)
+        await ctx.send(f"Searching {query} Bapu ji....")
         genius = lyricsgenius.Genius(os.getenv("GENIUS"))
-        artist = genius.search_artist(query, max_songs=10)
+        artist = genius.search_artist(query, max_songs=5)
         voice_channel = ctx.author.voice.channel
         songs = []
         for song in artist.songs:
