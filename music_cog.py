@@ -1,7 +1,6 @@
 import os
 import random
 from time import sleep
-
 import discord
 from discord.ext import commands
 import lyricsgenius
@@ -10,12 +9,13 @@ from youtube_dl import YoutubeDL
 import json
 from porn_desi import search
 from porn_parts import get_porn
+from youtubemusic import YouTubeMusic
 
 
 class music_cog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-
+        self.youtubeMusic = YouTubeMusic()
         # all the music related stuff
         self.is_playing = False
 
@@ -136,7 +136,7 @@ class music_cog(commands.Cog):
             await ctx.send(f"Gazab Maal Hai{porn}")
 
     @commands.command(name="bobita", help="Respect")
-    async def help(self, ctx):
+    async def bobita(self, ctx):
         await ctx.send("Bhabhi Hai Rei Bobita Ji Bol BSDK...")
 
     @commands.command(name="p", help="Plays a selected song from youtube")
@@ -261,3 +261,28 @@ class music_cog(commands.Cog):
     async def yomama(self, ctx):
         content = requests.get("https://api.yomomma.info").json()['joke']
         await ctx.send(content)
+
+    @commands.command(name="l", help="Lyrics")
+    async def ly(self, ctx, *args):
+        query = " ".join(args)
+        voice_channel = ctx.author.voice.channel
+        if voice_channel is None:
+            await ctx.send("Connect to a voice channel!")
+        else:
+            lyrics = await self.youtubeMusic.getLyrics(query)
+            if lyrics:
+                if len(lyrics['lyrics']) > 1800:
+                    lyrics['lyrics'] = f'{lyrics["lyrics"][0: 1800]}\n...'
+                    lyrics[
+                        'source'] += '\nLyrics contain more than 2000 characters.\nUse lyricsSend to get them in a TXT file.'
+                await self.embed.lyrics(
+                    ctx,
+                    lyrics,
+                )
+            else:
+                await self.embed.exception(
+                    ctx,
+                    'Lyrics Not Found',
+                    'Lyrics are not present for this track. 📖',
+                    '❌'
+                )
