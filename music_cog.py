@@ -235,8 +235,8 @@ class music_cog(commands.Cog):
                 if self.is_playing == False:
                     await self.play_music()
 
-    @commands.command(name="artist", help="Respect")
-    async def artist(self, ctx, *args):
+    @commands.command(name="rec", help="Recommends Songs From Artist")
+    async def rec(self, ctx, *args):
         query = " ".join(args)
         genius = lyricsgenius.Genius(os.getenv("GENIUS"))
         artist = genius.search_artist(query, max_songs=5, sort="title")
@@ -249,7 +249,16 @@ class music_cog(commands.Cog):
         else:
             for song in songs:
                 await ctx.send(f"{song}")
-    # https://api.yomomma.info
+
+    @commands.command(name="ly", help="Lyrics")
+    async def ly(self, ctx, *args):
+        query = " ".join(args)
+        genius = lyricsgenius.Genius(os.getenv("GENIUS"))
+        song_name, artist_name = query.split('by')
+        artist = genius.search_artist(artist_name, max_songs=0)
+        song = genius.search_song(song_name, artist.name)
+        await ctx.send(f"{song.lyrics}")
+
     @commands.command(name="meme", help="Meme")
     async def meme(self, ctx):
         content = requests.get("https://meme-api.herokuapp.com/gimme").text
@@ -261,28 +270,3 @@ class music_cog(commands.Cog):
     async def yomama(self, ctx):
         content = requests.get("https://api.yomomma.info").json()['joke']
         await ctx.send(content)
-
-    @commands.command(name="l", help="Lyrics")
-    async def ly(self, ctx, *args):
-        query = " ".join(args)
-        voice_channel = ctx.author.voice.channel
-        if voice_channel is None:
-            await ctx.send("Connect to a voice channel!")
-        else:
-            lyrics = await self.youtubeMusic.getLyrics(query)
-            if lyrics:
-                if len(lyrics['lyrics']) > 1800:
-                    lyrics['lyrics'] = f'{lyrics["lyrics"][0: 1800]}\n...'
-                    lyrics[
-                        'source'] += '\nLyrics contain more than 2000 characters.\nUse lyricsSend to get them in a TXT file.'
-                await self.embed.lyrics(
-                    ctx,
-                    lyrics,
-                )
-            else:
-                await self.embed.exception(
-                    ctx,
-                    'Lyrics Not Found',
-                    'Lyrics are not present for this track. 📖',
-                    '❌'
-                )
