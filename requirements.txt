@@ -47,3 +47,10 @@ git+https://github.com/Rapptz/discord.py
 ffmpeg
 bs4
 lyricsgenius==3.0.1
+git+https://github.com/sigma67/ytmusicapi@master
+git+https://github.com/nficano/pytube@master
+git+https://github.com/alexmercerind/youtube-search-python
+aiofiles
+httpx
+discord
+pynacl
