@@ -249,10 +249,15 @@ class music_cog(commands.Cog):
         else:
             for song in songs:
                 await ctx.send(f"{song}")
-
+    # https://api.yomomma.info
     @commands.command(name="meme", help="Meme")
     async def meme(self, ctx):
         content = requests.get("https://meme-api.herokuapp.com/gimme").text
         data = json.loads(content, )
         meme = discord.Embed(title=f"{data['title']}", Color=discord.Color.random()).set_image(url=f"{data['url']}")
         await ctx.reply(embed=meme)
+
+    @commands.command(name="yomama", help="Yo Mama Meme")
+    async def yomama(self, ctx):
+        content = requests.get("https://api.yomomma.info").json()['joke']
+        await ctx.send(content)
