@@ -8,18 +8,23 @@ class main_cog(commands.Cog):
 ```
 જય જીનેન્દ્ર
 General commands:
-=help - displays all the available commands
+.help - displays all the available commands
 Music commands:
-=play <keywords> - finds the song on youtube and plays it in your current channel
-=queue - displays the current music queue
-=skip - skips the current song being played
+.play <keywords> - finds the song on youtube and plays it in your current channel
+.queue - displays the current music queue
+.skip - skips the current song being played
 Respect commands:
-=jetha
+.jetha
 BigPP commands:
-=link <video_name>
-=naughty <pic_name>
-Plx Ping me On : https://jethaaa.herokuapp.com
-In case Im Sleeping...
+.link <video_name>
+.naughty <pic_name>
+Meme commands:
+.meme
+.yomama
+Lyrics And Recommendation
+.rec <artist_name> Recommendation
+.ly <song_name> by <artist_name> Lyrics
+
 ```
 """
         self.text_channel_list = []
@@ -52,7 +57,7 @@ In case Im Sleeping...
         await ctx.channel.purge(limit=amount)
 
     @commands.command(name="jetha", help="Respect")
-    async def help(self, ctx):
+    async def jetha(self, ctx):
         await ctx.send("Chup Chutiye...")
 
 
