@@ -52,5 +52,3 @@ git+https://github.com/nficano/pytube@master
 git+https://github.com/alexmercerind/youtube-search-python
 aiofiles
 httpx
-discord
-pynacl
