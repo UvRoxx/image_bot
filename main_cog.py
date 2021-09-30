@@ -8,23 +8,23 @@ class main_cog(commands.Cog):
 ```
 જય જીનેન્દ્ર
 General commands:
-.help - displays all the available commands
+-help - displays all the available commands
 Music commands:
-.play <keywords> - finds the song on youtube and plays it in your current channel
-.queue - displays the current music queue
-.skip - skips the current song being played
+-play <keywords> - finds the song on youtube and plays it in your current channel
+-queue - displays the current music queue
+-skip - skips the current song being played
 Respect commands:
-.jetha
+-jetha
 BigPP commands:
-.link <video_name>
-.naughty <pic_name>
+-link <video_name>
+-naughty <pic_name>
 Meme commands:
-.meme
-.yomama
+-meme
+-yomama
 Lyrics And Recommendation
-.rec <artist_name> Recommendation
-.ly <song_name> by <artist_name> Lyrics
-.recp <artist_name> Auto Play 5 Songs from Popular songs by Artist
+-rec <artist_name> Recommendation
+-ly <song_name> by <artist_name> Lyrics
+-recp <artist_name> Auto Play 5 Songs from Popular songs by Artist
 
 ```
 """
