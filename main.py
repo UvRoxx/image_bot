@@ -8,7 +8,7 @@ from main_cog import main_cog
 from image_cog import image_cog
 from music_cog import music_cog
 
-bot = commands.Bot(command_prefix='.')
+bot = commands.Bot(command_prefix='-')
 
 # remove the default help command so that we can write out own
 bot.remove_command('help')
