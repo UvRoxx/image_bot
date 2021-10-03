@@ -25,7 +25,7 @@ Lyrics And Recommendation
 -rec <artist_name> Recommendation
 -ly <song_name> by <artist_name> Lyrics
 -recp <artist_name> Auto Play 5 Songs from Popular songs by Artist
-
+-shzp <song_query> Auto Play Top Songs related to the query
 ```
 """
         self.text_channel_list = []
