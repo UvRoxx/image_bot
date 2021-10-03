@@ -7,7 +7,7 @@ def rec_shazam(query) -> list:
     API_KEY = os.getenv("SHAZAM")
     url = "https://shazam.p.rapidapi.com/search"
 
-    querystring = {"term": "kiss the rain", "locale": "en-US", "offset": "0", "limit": "5"}
+    querystring = {"term": query, "locale": "en-US", "offset": "0", "limit": "5"}
 
     headers = {
         'x-rapidapi-host': "shazam.p.rapidapi.com",
