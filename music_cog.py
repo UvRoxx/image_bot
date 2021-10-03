@@ -9,6 +9,7 @@ from youtube_dl import YoutubeDL
 import json
 from porn_desi import search
 from porn_parts import get_porn
+from shazam import rec_shazam
 from youtubemusic import YouTubeMusic
 
 
@@ -288,6 +289,27 @@ class music_cog(commands.Cog):
         songs = []
         for song in artist.songs:
             songs.append(song.title)
+        voice_channel = ctx.author.voice.channel
+        if voice_channel is None:
+            await ctx.send("Connect to a voice channel!")
+        else:
+            for s in songs:
+                song = self.search_yt(s)
+                if type(song) == type(True):
+                    await ctx.send(
+                        "Could not download the song. Incorrect format try another keyword. This could be due to playlist or a livestream format.")
+                else:
+                    await ctx.send(f"{s} added to the queue")
+
+                    self.music_queue.append([song, voice_channel])
+                    if self.is_playing == False:
+                        await self.play_music()
+
+    @commands.command(name="shzp", help="Recommends and Plays Songs From Artist")
+    async def recp(self, ctx, *args):
+        query = " ".join(args)
+        await ctx.send(f"Searching {query} Bapu ji....")
+        songs = rec_shazam(query)
         voice_channel = ctx.author.voice.channel
         if voice_channel is None:
             await ctx.send("Connect to a voice channel!")
