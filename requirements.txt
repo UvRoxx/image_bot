@@ -42,7 +42,7 @@ typing-extensions==3.7.4.3
 urllib3==1.26.2
 Werkzeug==1.0.1
 yarl==1.6.3
-youtube_dl==2021.6.6
+youtube_dl
 git+https://github.com/Rapptz/discord.py
 ffmpeg
 bs4
@@ -52,5 +52,5 @@ git+https://github.com/nficano/pytube@master
 git+https://github.com/alexmercerind/youtube-search-python
 aiofiles
 httpx
-ytmusicapi==0.19.3
-youtube-search-python==1.4.8
+ytmusicapi
+youtube-search-python
